@@ -23,6 +23,9 @@
 
 <!-- Main JavaScript File -->
 <script src="<?= $rootPrefix ?>assets/js/app.js"></script>
+<?php foreach (($extraScripts ?? []) as $src): ?>
+<script src="<?= $rootPrefix . e($src) ?>"></script>
+<?php endforeach; ?>
 
 </body>
 </html>
