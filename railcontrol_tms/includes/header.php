@@ -195,6 +195,14 @@ $rootPrefix = (
             ▥ <span>Reports</span>
         </a>
 
+        <!-- My Profile (Semua Staf) -->
+        <a
+            class="nav-link <?= $activePage === 'profile' ? 'active' : '' ?>"
+            href="<?= $rootPrefix ?>users/profile.php"
+        >
+            ⚙ <span>My profile</span>
+        </a>
+
 
         <!-- Administrator Only: User Management -->
         <?php if ((current_user()['role'] ?? '') === 'Administrator'): ?>
@@ -212,8 +220,9 @@ $rootPrefix = (
         <!-- Sidebar Bottom Section -->
         <div class="sidebar-bottom">
 
-            <!-- Current User Information -->
-            <div class="user-chip">
+            <!-- Current User Information (Klik untuk ke Profile) -->
+            <a href="<?= $rootPrefix ?>users/profile.php" style="text-decoration: none; color: inherit; display: block;">
+                <div class="user-chip">
 
                 <!-- User Avatar -->
                 <div class="avatar">
