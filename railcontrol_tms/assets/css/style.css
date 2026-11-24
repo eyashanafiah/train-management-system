@@ -21,3 +21,252 @@ fieldset.form-section legend{font:700 13px Manrope,sans-serif;padding:0 8px;colo
 .pager .cur{background:var(--teal);color:#07333a;border-color:var(--teal);font-weight:700}
 .pager .dis{color:var(--muted);opacity:.6}
 th a{color:inherit;text-decoration:none}th a:hover{text-decoration:underline}
+
+
+/* ================= WELCOME GATE (index.php) ================= */
+body.welcome-fullscreen {
+    margin: 0;
+    background: linear-gradient(180deg, #0F1E2E 0%, #0B1622 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Full-Bleed Edge-to-Edge Dark Navy Hero */
+.hero-fullscreen {
+    width: 100%;
+    background: radial-gradient(circle at 82% 28%, rgba(20, 184, 166, 0.22) 0%, transparent 55%),
+                linear-gradient(135deg, #0F1E2E 0%, #15293E 100%);
+    color: #FFFFFF;
+    border-bottom: 1px solid rgba(20, 184, 166, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.hero-inner {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 24px 16px;
+}
+
+.hero-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero-brand .brand-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #14B8A6, #0D9488);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-brand .brand-title {
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+}
+
+.hero-brand .brand-sub {
+    color: #94A3B8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    background: rgba(20, 184, 166, 0.16);
+    color: #5EEAD4;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+}
+
+.hero-copy h1 {
+    margin: 0 0 14px;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 720px;
+}
+
+.hero-copy p {
+    margin: 0 0 26px;
+    color: #CBD5E1;
+    font-size: 15.5px;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* High-Contrast CTA Buttons */
+.hero-cta-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-primary-teal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+    border: none;
+    text-decoration: none !important;
+    box-shadow: 0 8px 20px rgba(20, 184, 166, 0.32);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary-teal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(20, 184, 166, 0.45);
+}
+
+.btn-secondary-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #F8FAFC !important;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    text-decoration: none !important;
+    transition: all 0.15s ease;
+}
+
+.btn-secondary-glass:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: #14B8A6;
+}
+
+/* Edge-to-Edge Train Animation Stage */
+.train-stage-full {
+    width: 100%;
+    line-height: 0;
+    margin-top: 10px;
+}
+
+/* Bottom Cards Section Matching Top Dark Navy Background */
+.bottom-cards-wrap {
+    max-width: 1180px;
+    width: 100%;
+    margin: auto;
+    padding: 32px 24px 42px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.feature-card {
+    border-radius: 16px;
+    padding: 22px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.45);
+}
+
+.card-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.feature-card h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #F8FAFC;
+}
+
+.feature-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #94A3B8;
+}
+
+/* Dark Navy Tinted Cards Harmonized with Top Hero */
+.card-teal {
+    background: linear-gradient(145deg, rgba(20, 184, 166, 0.14) 0%, rgba(21, 41, 62, 0.85) 100%);
+    border: 1px solid rgba(20, 184, 166, 0.35);
+}
+.card-teal .card-icon-box { background: rgba(20, 184, 166, 0.22); color: #5EEAD4; border: 1px solid rgba(94, 234, 212, 0.35); }
+.card-teal:hover { border-color: #14B8A6; }
+
+.card-sky {
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.13) 0%, rgba(21, 41, 62, 0.85) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.32);
+}
+.card-sky .card-icon-box { background: rgba(56, 189, 248, 0.2); color: #7DD3FC; border: 1px solid rgba(125, 211, 252, 0.35); }
+.card-sky:hover { border-color: #38BDF8; }
+
+.card-rose {
+    background: linear-gradient(145deg, rgba(244, 63, 94, 0.13) 0%, rgba(21, 41, 62, 0.85) 100%);
+    border: 1px solid rgba(244, 63, 94, 0.32);
+}
+.card-rose .card-icon-box { background: rgba(244, 63, 94, 0.2); color: #FDA4AF; border: 1px solid rgba(253, 164, 175, 0.35); }
+.card-rose:hover { border-color: #FB7185; }
+
+.card-amber {
+    background: linear-gradient(145deg, rgba(245, 158, 11, 0.13) 0%, rgba(21, 41, 62, 0.85) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.32);
+}
+.card-amber .card-icon-box { background: rgba(245, 158, 11, 0.2); color: #FCD34D; border: 1px solid rgba(252, 211, 77, 0.35); }
+.card-amber:hover { border-color: #FBBF24; }
+
+@media (max-width: 960px) {
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-copy h1 { font-size: 28px; }
+}
+
+@media (max-width: 560px) {
+    .feature-grid { grid-template-columns: 1fr; }
+}
