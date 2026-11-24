@@ -151,3 +151,66 @@ INSERT INTO maintenance_issues (issue_code,train_id,issue_title,description,prio
 INSERT INTO train_positions (train_id,station_id,latitude,longitude,movement_status) VALUES
 (1,2,2.7297,101.9381,'Moving'),
 (2,1,3.1340,101.6860,'On Time');
+
+-- ============================================================================
+-- INFRASTRUCTURE ASSETS & CONDITION MONITORING MODULE (Merged from rail_maintenance)
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS asset_types (
+  id     INT AUTO_INCREMENT PRIMARY KEY,
+  name   VARCHAR(30) NOT NULL UNIQUE,
+  prefix CHAR(3)     NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS assets (
+  id               INT AUTO_INCREMENT PRIMARY KEY,
+  asset_code       VARCHAR(20)  NOT NULL UNIQUE,
+  name             VARCHAR(100) NOT NULL,
+  type_id          INT NOT NULL,
+  line_name        VARCHAR(30)  NOT NULL,
+  chainage_km      DECIMAL(6,1) NOT NULL,
+  latitude         DECIMAL(9,6) NULL,
+  longitude        DECIMAL(9,6) NULL,
+  condition_status ENUM('Good','Fair','Poor') NOT NULL DEFAULT 'Good',
+  created_by       INT NOT NULL,
+  created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_assets_type (type_id),
+  INDEX idx_assets_condition (condition_status),
+  INDEX idx_assets_name (name),
+  CONSTRAINT fk_assets_type FOREIGN KEY (type_id) REFERENCES asset_types(id),
+  CONSTRAINT fk_assets_user FOREIGN KEY (created_by) REFERENCES users(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS inspections (
+  id               INT AUTO_INCREMENT PRIMARY KEY,
+  asset_id         INT NOT NULL,
+  inspector_id     INT NOT NULL,
+  inspected_on     DATE NOT NULL,
+  condition_status ENUM('Good','Fair','Poor') NOT NULL,
+  notes            VARCHAR(500) NULL,
+  created_at       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_insp_asset_date (asset_id, inspected_on),
+  CONSTRAINT fk_insp_asset FOREIGN KEY (asset_id) REFERENCES assets(id) ON DELETE CASCADE,
+  CONSTRAINT fk_insp_user  FOREIGN KEY (inspector_id) REFERENCES users(id)
+) ENGINE=InnoDB;
+
+INSERT INTO asset_types (name, prefix) VALUES
+('Track','TRK'), ('Catenary','CAT'), ('Bridge','BRG'), ('Tunnel','TUN');
+
+INSERT INTO assets (asset_code, name, type_id, line_name, chainage_km, latitude, longitude, condition_status, created_by) VALUES
+('TRK001','Track Section KL-JB 12.4',     1,'West Coast', 12.4, 2.743000,101.700000,'Good',1),
+('CAT002','Catenary Mast Run C-45',       2,'West Coast', 45.0, 2.480000,102.050000,'Fair',1),
+('BRG003','Sungai Muar Bridge',           3,'West Coast', 88.2, 2.045000,102.570000,'Poor',1),
+('TUN004','Bukit Gambang Tunnel',         4,'East Coast',120.7, 3.720000,103.130000,'Good',1),
+('TRK005','Track Section BP 61.0',        1,'West Coast', 61.0, 1.850000,102.930000,'Poor',1),
+('CAT006','Catenary Mast Run C-102',      2,'East Coast',102.3, 3.810000,103.330000,'Good',1);
+
+INSERT INTO inspections (asset_id, inspector_id, inspected_on, condition_status, notes) VALUES
+(1,1,'2026-10-02','Good','Routine check, no issues.'),
+(2,1,'2026-09-18','Fair','Two loose dropper wires noted.'),
+(3,1,'2026-06-14','Fair','Minor scour at pier P2.'),
+(3,1,'2026-11-05','Poor','Scour at pier P3 has worsened.'),
+(4,1,'2026-08-29','Good','Lining intact, drainage clear.'),
+(5,1,'2026-11-12','Poor','Rail head wear close to limit.'),
+(6,1,'2026-10-21','Good','Contact wire height within tolerance.');
