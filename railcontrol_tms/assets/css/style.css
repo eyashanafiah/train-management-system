@@ -270,3 +270,58 @@ body.welcome-fullscreen {
 @media (max-width: 560px) {
     .feature-grid { grid-template-columns: 1fr; }
 }
+
+/* Infrastructure Assets - tidy layout (scoped to #assetForm and .filters, asset pages only) */
+
+/* Create form: full-width, one white card per section, no double borders */
+#assetForm.card{max-width:none!important;background:transparent;border:0;box-shadow:none;padding:0}
+#assetForm fieldset.form-section{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin:0 0 20px;padding:22px 24px 24px;min-width:0}
+#assetForm fieldset.form-section legend{float:left;width:100%;padding:0 0 12px;margin:0 0 18px;border-bottom:1px solid var(--line);font:700 15px Manrope,sans-serif;color:var(--navy)}
+#assetForm fieldset.form-section legend+*{clear:both}
+
+/* 6-column grid: name full width, then 2 fields per row, then 3 fields per row */
+#assetForm .form-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px 22px;align-items:start}
+#assetForm .form-grid .field{grid-column:span 3;margin:0;min-width:0}
+#assetForm .form-grid .field.full{grid-column:1/-1}
+#assetForm fieldset.form-section:first-of-type .field:nth-child(n+4){grid-column:span 2}
+
+/* Labels, inputs, selects share one look and one height */
+#assetForm label{display:block;margin:0 0 7px;font-size:11px;font-weight:700;letter-spacing:.4px;color:#637286;text-transform:uppercase}
+#assetForm input,#assetForm select,#assetForm textarea{display:block;width:100%;margin:0;border:1px solid #dce4eb;border-radius:8px;padding:0 12px;background:#fff;font:13px 'DM Sans',sans-serif;color:var(--ink)}
+#assetForm input,#assetForm select{height:44px}
+#assetForm textarea{padding:11px 12px;min-height:110px;resize:vertical;line-height:1.5}
+#assetForm input:focus,#assetForm select:focus,#assetForm textarea:focus{outline:0;border-color:var(--teal);box-shadow:0 0 0 3px rgba(25,182,173,.15)}
+#assetForm .hint{margin:6px 0 0;font-size:11px;line-height:1.4;color:var(--muted)}
+#assetForm .field-error{margin:6px 0 0;font-size:11px;line-height:1.4;font-weight:600;color:var(--red)}
+#assetForm .field-error[hidden]{display:none}
+#assetForm #notesCount{text-align:right}
+
+/* Buttons row */
+#assetForm .form-actions{display:flex;gap:12px;align-items:center;margin:4px 0 8px}
+#assetForm .form-actions .btn{min-width:150px;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+
+/* Directory page: search and filter bar in one tidy row */
+.filters.card{padding:18px 20px;margin-bottom:20px}
+.filters{grid-template-columns:2fr 1fr 1fr 1fr auto;gap:14px;align-items:end}
+.filters input,.filters select{height:42px;padding:0 12px}
+.filters>div:last-child{display:flex;gap:10px;align-items:center}
+
+/* Tables: even spacing and no wrapping in the small columns */
+.filters ~ .card table th,.filters ~ .card table td{padding:13px 14px;vertical-align:middle}
+.filters ~ .card table th{white-space:nowrap}
+
+/* Tablet and phone */
+@media(max-width:900px){
+  .filters{grid-template-columns:1fr 1fr}
+  .filters>div:last-child{grid-column:1/-1}
+  #assetForm .form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #assetForm .form-grid .field,#assetForm fieldset.form-section:first-of-type .field:nth-child(n+4){grid-column:span 1}
+  #assetForm .form-grid .field.full,#assetForm fieldset.form-section:first-of-type .field:nth-child(1){grid-column:1/-1}
+}
+@media(max-width:560px){
+  .filters{grid-template-columns:1fr}
+  #assetForm .form-grid{grid-template-columns:1fr}
+  #assetForm .form-grid .field,#assetForm fieldset.form-section:first-of-type .field:nth-child(n+4){grid-column:1/-1}
+  #assetForm fieldset.form-section{padding:18px 16px}
+  #assetForm .form-actions .btn{flex:1}
+}
