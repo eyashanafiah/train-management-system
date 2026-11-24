@@ -25,9 +25,9 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="hero-brand">
                     <div class="brand-badge">R</div>
                     <div>
-                        <div class="brand-title">RAILCONTROL</div>
-                        <div class="brand-sub">OPERATIONS PLATFORM</div>
-                    </div>
+                            <div class="brand-title">RAIL<span>CONTROL</span></div>
+                            <div class="brand-sub">OPERATIONS PLATFORM</div>
+                        </div>
                 </div>
                 <span class="hero-pill">
                     <span class="status-dot"></span> REAL-TIME CORRIDOR &amp; ASSET TELEMETRY
